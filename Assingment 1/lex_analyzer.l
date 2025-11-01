@@ -29,29 +29,25 @@ extern ofstream outlog;
 delim	 [ \t\v\r]
 
 /* write regular expressions for whitespace and newline */
-ws		 
+ws	{delim}+ 
+newline \n 
 
-newline  
 
 letter_	 [A-Za-z_]
 digit	 [0-9]
 
 /* write regular expressions for id, float and integers */
-id		 
+id {letter_}({letter_}|{digit})*
 
+integer {digit}+
 
+float {digit}+[eE][+-]?{digit}+ |{digit}*[.]{digit}+([eE][+-]?{digit}+)?
 %%
 
 {ws}		{ /* ignore whitespace */ }
 {newline}	{ /* do necessary bookkeeping (line number tracking etc.) */ }
 
-{id}       {
-                symbol_info *s = new symbol_info((string)yytext,"ID");
-                yylval = (YYSTYPE)s;
-                loglist="Line no "+to_string(lines)+": Token <ID> Lexeme "+yytext+" found"+"\n"+"\n";
-			    outlog<<loglist;
-                return ID;
-            }
+
 
 if          { 
                 loglist="Line no "+to_string(lines)+": Token <IF> Lexeme "+yytext+" found"+"\n"+"\n";
@@ -118,6 +114,13 @@ switch          {
                 loglist="Line no "+to_string(lines)+": Token <SWITCH> Lexeme "+yytext+" found"+"\n"+"\n";
 		outlog<<loglist;
                 return SWITCH; }
+{id}       {
+                symbol_info *s = new symbol_info((string)yytext,"ID");
+                yylval = (YYSTYPE)s;
+                loglist="Line no "+to_string(lines)+": Token <ID> Lexeme "+yytext+" found"+"\n"+"\n";
+			    outlog<<loglist;
+                return ID;
+            }
 
 "+"|"-"	    {
                 symbol_info *s = new symbol_info((string)yytext,"ADDOP");

@@ -39,9 +39,9 @@ digit	 [0-9]
 /* write regular expressions for id, float and integers */
 id {letter_}({letter_}|{digit})*
 
-integer {digit}+
+integers {digit}+
 
-float {digit}+[eE][+-]?{digit}+ |{digit}*[.]{digit}+([eE][+-]?{digit}+)?
+floats {digit}+[eE][+-]?{digit}+ |{digit}*[.]{digit}+([eE][+-]?{digit}+)?
 %%
 
 {ws}		{ /* ignore whitespace */ }
@@ -125,8 +125,20 @@ printf          {
                 loglist="Line no "+to_string(lines)+": Token <PRINTF> Lexeme "+yytext+" found"+"\n"+"\n";
 		outlog<<loglist;
                 return PRINTF; }
-
-
+{integers}       {
+                symbol_info *s = new symbol_info((string)yytext,"ID");
+                yylval = (YYSTYPE)s;
+                loglist="Line no "+to_string(lines)+": Token <ID> Lexeme "+yytext+" found"+"\n"+"\n";
+			    outlog<<loglist;
+                return CONST_INT;
+            }
+{floats}       {
+                symbol_info *s = new symbol_info((string)yytext,"ID");
+                yylval = (YYSTYPE)s;
+                loglist="Line no "+to_string(lines)+": Token <ID> Lexeme "+yytext+" found"+"\n"+"\n";
+			    outlog<<loglist;
+                return CONST_FLOAT;
+}
 {id}       {
                 symbol_info *s = new symbol_info((string)yytext,"ID");
                 yylval = (YYSTYPE)s;
@@ -147,10 +159,10 @@ printf          {
                 loglist="Line no "+to_string(lines)+": Token <ADDOP> Lexeme "+yytext+" found"+"\n"+"\n";
 			    outlog<<loglist;
                 return MULOP;}
-"++"|"- -"     {symbol_info *s = new symbol_info((string)yytext,"ADDOP");
+/* "++"|"- -"     {symbol_info *s = new symbol_info((string)yytext,"ADDOP");
                 yylval = (YYSTYPE)s;
                 loglist="Line no "+to_string(lines)+": Token <ADDOP> Lexeme "+yytext+" found"+"\n"+"\n";
-			    outlog<<loglist;
+			    outlog<<loglist; */
                 return INCOP;}
 "<"|">"|"=="|"<="|">="|"!="     {symbol_info *s = new symbol_info((string)yytext,"ADDOP");
                 yylval = (YYSTYPE)s;
@@ -213,4 +225,12 @@ printf          {
                 loglist="Line no "+to_string(lines)+": Token <SEMICOLON > Lexeme "+yytext+" found"+"\n"+"\n";
 			    outlog<<loglist;               
                 return SEMICOLON ; }
+"++"        { 
+                loglist="Line no "+to_string(lines)+": Token <SEMICOLON > Lexeme "+yytext+" found"+"\n"+"\n";
+			    outlog<<loglist;               
+                return INCOP ; }
 
+"--"        { 
+                loglist="Line no "+to_string(lines)+": Token <SEMICOLON > Lexeme "+yytext+" found"+"\n"+"\n";
+			    outlog<<loglist;               
+                return DECOP ; }

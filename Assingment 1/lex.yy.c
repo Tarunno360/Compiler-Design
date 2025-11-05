@@ -285,18 +285,23 @@ static void yy_fatal_error YY_PROTO(( yyconst char msg[] ));
 	*yy_cp = '\0'; \
 	yy_c_buf_p = yy_cp;
 
-#define YY_NUM_RULES 20
-#define YY_END_OF_BUFFER 21
-static yyconst short int yy_accept[73] =
+#define YY_NUM_RULES 41
+#define YY_END_OF_BUFFER 42
+static yyconst short int yy_accept[117] =
     {   0,
-        0,    0,   21,   20,    1,    2,   18,   19,   17,   17,
-       17,   17,   17,   17,   17,   17,   17,   17,   17,   17,
-        1,   17,   17,   17,   17,    8,   17,   17,    3,   17,
-       17,   17,   17,   17,   17,   17,   17,   17,   17,   17,
-        5,    6,   17,   17,   17,   17,   17,   17,   12,   17,
-       17,    4,   17,   17,   17,    7,   17,   15,   17,   17,
-       17,   17,   17,    9,   17,   14,   11,   13,   16,   17,
-       10,    0
+        0,    0,   42,   41,    1,    2,   29,   25,   41,   30,
+       31,   24,   36,   24,   21,   37,   38,   26,   28,   26,
+       23,   34,   35,   23,   23,   23,   23,   23,   23,   23,
+       23,   23,   23,   23,   23,   32,   41,   33,    1,   26,
+       27,   39,   40,    0,   21,    0,   23,   23,   23,   23,
+       23,   23,    5,   23,   23,   23,   23,    3,   23,   23,
+       23,   23,   23,   23,   22,    0,   22,   23,   23,   23,
+       23,   23,   23,   23,   23,    4,   23,    6,   23,   23,
+       23,   23,   23,   23,   18,   15,   23,   23,   23,   12,
+       23,   11,   23,   23,   23,    8,   23,   14,   23,   23,
+
+       23,    7,   23,   23,   23,   13,   23,   23,   16,   20,
+       17,    9,   23,   10,   19,    0
     } ;
 
 static yyconst int yy_ec[256] =
@@ -304,17 +309,17 @@ static yyconst int yy_ec[256] =
         1,    1,    1,    1,    1,    1,    1,    1,    2,    3,
         2,    1,    2,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    2,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    4,    5,    6,    1,    1,    7,    7,    7,
-        7,    7,    7,    7,    7,    7,    7,    1,    1,    1,
-        1,    1,    1,    1,    8,    8,    8,    8,    8,    8,
-        8,    8,    8,    8,    8,    8,    8,    8,    8,    8,
-        8,    8,    8,    8,    8,    8,    8,    8,    8,    8,
-        1,    1,    1,    1,    8,    1,    9,   10,   11,   12,
+        1,    2,    4,    1,    1,    1,    5,    6,    1,    7,
+        8,    9,   10,   11,   12,   13,   14,   15,   15,   15,
+       15,   15,   15,   15,   15,   15,   15,   16,   17,   18,
+       19,   20,    1,    1,   21,   21,   21,   21,   22,   21,
+       21,   21,   21,   21,   21,   21,   21,   21,   21,   21,
+       21,   21,   21,   21,   21,   21,   21,   21,   21,   21,
+       23,    1,   24,    1,   21,    1,   25,   26,   27,   28,
 
-       13,   14,    8,   15,   16,    8,   17,   18,    8,   19,
-       20,   21,    8,   22,   23,   24,   25,   26,   27,    8,
-        8,    8,    1,    1,    1,    1,    1,    1,    1,    1,
+       29,   30,   31,   32,   33,   21,   34,   35,   21,   36,
+       37,   38,   21,   39,   40,   41,   42,   43,   44,   21,
+       21,   21,   45,   46,   47,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -331,67 +336,95 @@ static yyconst int yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static yyconst int yy_meta[28] =
+static yyconst int yy_meta[48] =
     {   0,
-        1,    1,    1,    1,    1,    1,    2,    2,    2,    2,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    2,    1,    1,    1,    1,    1,
+        2,    2,    1,    1,    2,    2,    2,    2,    2,    2,
         2,    2,    2,    2,    2,    2,    2,    2,    2,    2,
-        2,    2,    2,    2,    2,    2,    2
+        2,    2,    2,    2,    1,    1,    1
     } ;
 
-static yyconst short int yy_base[74] =
+static yyconst short int yy_base[118] =
     {   0,
-        0,    0,   80,   81,   77,   81,   81,   81,    0,   56,
-       13,   57,   58,   55,   15,   52,   60,   45,   51,   55,
-       67,    0,   55,   58,   47,   40,   41,   41,    0,   38,
-       45,   36,   43,   42,   41,   47,   33,   30,   43,   39,
-        0,    0,   32,   25,   25,   36,   29,   29,    0,   29,
-       26,    0,   19,   20,   30,    0,   27,    0,   20,   25,
-       23,   17,   20,    0,    7,    0,    0,    0,    0,   18,
-        0,   81,   28
+        0,    0,  141,  142,  138,  142,  120,  142,  132,  142,
+      142,  127,  142,  124,   35,  142,  142,  116,  115,  114,
+        0,  142,  142,   93,   24,   22,   96,   17,   93,   30,
+       90,   99,   83,   89,   93,  142,   78,  142,  121,  142,
+      142,  142,  142,  107,   40,   53,    0,   92,   80,   94,
+       82,   87,   74,   75,   77,   74,   71,    0,   70,   77,
+       68,   75,   74,   73,   52,   90,   89,   78,   73,   62,
+       59,   74,   72,   68,   71,    0,   58,    0,   58,   51,
+       51,   63,   55,   55,    0,    0,   55,   45,   51,    0,
+       44,    0,   43,   44,   55,    0,   51,    0,   43,   43,
+
+       48,    0,   46,   39,   41,    0,   30,   30,    0,    0,
+        0,    0,   41,    0,    0,  142,   56
     } ;
 
-static yyconst short int yy_def[74] =
+static yyconst short int yy_def[118] =
     {   0,
-       72,    1,   72,   72,   72,   72,   72,   72,   73,   73,
-       73,   73,   73,   73,   73,   73,   73,   73,   73,   73,
-       72,   73,   73,   73,   73,   73,   73,   73,   73,   73,
-       73,   73,   73,   73,   73,   73,   73,   73,   73,   73,
-       73,   73,   73,   73,   73,   73,   73,   73,   73,   73,
-       73,   73,   73,   73,   73,   73,   73,   73,   73,   73,
-       73,   73,   73,   73,   73,   73,   73,   73,   73,   73,
-       73,    0,   72
+      116,    1,  116,  116,  116,  116,  116,  116,  116,  116,
+      116,  116,  116,  116,  116,  116,  116,  116,  116,  116,
+      117,  116,  116,  117,  117,  117,  117,  117,  117,  117,
+      117,  117,  117,  117,  117,  116,  116,  116,  116,  116,
+      116,  116,  116,  116,  116,  116,  117,  117,  117,  117,
+      117,  117,  117,  117,  117,  117,  117,  117,  117,  117,
+      117,  117,  117,  117,  116,  116,  116,  117,  117,  117,
+      117,  117,  117,  117,  117,  117,  117,  117,  117,  117,
+      117,  117,  117,  117,  117,  117,  117,  117,  117,  117,
+      117,  117,  117,  117,  117,  117,  117,  117,  117,  117,
+
+      117,  117,  117,  117,  117,  117,  117,  117,  117,  117,
+      117,  117,  117,  117,  117,    0,  116
     } ;
 
-static yyconst short int yy_nxt[109] =
+static yyconst short int yy_nxt[190] =
     {   0,
-        4,    5,    6,    7,    8,    7,    4,    9,    9,   10,
-       11,   12,   13,   14,    9,   15,    9,    9,    9,    9,
-       16,   17,   18,    9,    9,   19,   20,   24,   29,   22,
-       71,   70,   25,   30,   69,   68,   67,   66,   65,   64,
-       63,   62,   61,   60,   59,   58,   57,   56,   55,   54,
-       53,   52,   51,   50,   49,   48,   47,   46,   45,   44,
-       43,   42,   41,   40,   39,   38,   37,   36,   21,   35,
-       34,   33,   32,   31,   28,   27,   26,   23,   21,   72,
-        3,   72,   72,   72,   72,   72,   72,   72,   72,   72,
-       72,   72,   72,   72,   72,   72,   72,   72,   72,   72,
+        4,    5,    6,    7,    8,    9,   10,   11,    8,   12,
+       13,   14,    4,    8,   15,   16,   17,   18,   19,   20,
+       21,   21,   22,   23,   21,   24,   25,   26,   27,   28,
+       29,   21,   30,   21,   21,   21,   21,   31,   32,   33,
+       21,   21,   34,   35,   36,   37,   38,   44,   49,   45,
+       52,   55,   44,   56,   45,   50,   46,   47,   53,   58,
+       51,   46,   66,   46,   66,   59,   65,   67,   46,  115,
+      114,  113,  112,   46,  111,  110,  109,  108,  107,  106,
+       46,  105,  104,  103,  102,  101,  100,   99,   98,   97,
+       96,   95,   94,   93,   92,   91,   90,   89,   88,   87,
 
-       72,   72,   72,   72,   72,   72,   72,   72
+       86,   85,   84,   67,   67,   83,   82,   81,   80,   79,
+       78,   77,   76,   75,   74,   73,   72,   71,   70,   69,
+       68,   65,   39,   41,   64,   63,   62,   61,   60,   57,
+       54,   48,   40,   40,   40,   43,   42,   41,   40,   39,
+      116,    3,  116,  116,  116,  116,  116,  116,  116,  116,
+      116,  116,  116,  116,  116,  116,  116,  116,  116,  116,
+      116,  116,  116,  116,  116,  116,  116,  116,  116,  116,
+      116,  116,  116,  116,  116,  116,  116,  116,  116,  116,
+      116,  116,  116,  116,  116,  116,  116,  116,  116
     } ;
 
-static yyconst short int yy_chk[109] =
+static yyconst short int yy_chk[190] =
     {   0,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,   11,   15,   73,
-       70,   65,   11,   15,   63,   62,   61,   60,   59,   57,
-       55,   54,   53,   51,   50,   48,   47,   46,   45,   44,
-       43,   40,   39,   38,   37,   36,   35,   34,   33,   32,
-       31,   30,   28,   27,   26,   25,   24,   23,   21,   20,
-       19,   18,   17,   16,   14,   13,   12,   10,    5,    3,
-       72,   72,   72,   72,   72,   72,   72,   72,   72,   72,
-       72,   72,   72,   72,   72,   72,   72,   72,   72,   72,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,   15,   25,   15,
+       26,   28,   45,   28,   45,   25,   15,  117,   26,   30,
+       25,   45,   46,   15,   46,   30,   65,   46,   45,  113,
+      108,  107,  105,   65,  104,  103,  101,  100,   99,   97,
+       65,   95,   94,   93,   91,   89,   88,   87,   84,   83,
+       82,   81,   80,   79,   77,   75,   74,   73,   72,   71,
 
-       72,   72,   72,   72,   72,   72,   72,   72
+       70,   69,   68,   67,   66,   64,   63,   62,   61,   60,
+       59,   57,   56,   55,   54,   53,   52,   51,   50,   49,
+       48,   44,   39,   37,   35,   34,   33,   32,   31,   29,
+       27,   24,   20,   19,   18,   14,   12,    9,    7,    5,
+        3,  116,  116,  116,  116,  116,  116,  116,  116,  116,
+      116,  116,  116,  116,  116,  116,  116,  116,  116,  116,
+      116,  116,  116,  116,  116,  116,  116,  116,  116,  116,
+      116,  116,  116,  116,  116,  116,  116,  116,  116,  116,
+      116,  116,  116,  116,  116,  116,  116,  116,  116
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -432,7 +465,7 @@ extern ofstream outlog;
 /* Regular Definitions */
 /* write regular expressions for whitespace and newline */
 /* write regular expressions for id, float and integers */
-#line 436 "lex.yy.c"
+#line 469 "lex.yy.c"
 
 /* Macros after this point can all be overridden by user definitions in
  * section 1.
@@ -586,7 +619,7 @@ YY_DECL
 #line 45 "lex_analyzer.l"
 
 
-#line 590 "lex.yy.c"
+#line 623 "lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -637,13 +670,13 @@ yy_match:
 			while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 				{
 				yy_current_state = (int) yy_def[yy_current_state];
-				if ( yy_current_state >= 73 )
+				if ( yy_current_state >= 117 )
 					yy_c = yy_meta[(unsigned int) yy_c];
 				}
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 81 );
+		while ( yy_base[yy_current_state] != 142 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -677,11 +710,11 @@ YY_RULE_SETUP
 case 2:
 YY_RULE_SETUP
 #line 48 "lex_analyzer.l"
-{ /* do necessary bookkeeping (line number tracking etc.) */ }
+{ lines++; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 52 "lex_analyzer.l"
+#line 51 "lex_analyzer.l"
 { 
                 loglist="Line no "+to_string(lines)+": Token <IF> Lexeme "+yytext+" found"+"\n"+"\n";
 			    outlog<<loglist;
@@ -689,23 +722,23 @@ YY_RULE_SETUP
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 56 "lex_analyzer.l"
-{ 
-                loglist="Line no "+to_string(lines)+": Token <ELSE> Lexeme "+yytext+" found"+"\n"+"\n";
-		outlog<<loglist;
-                return ELSE; }
-	YY_BREAK
-case 5:
-YY_RULE_SETUP
-#line 61 "lex_analyzer.l"
+#line 55 "lex_analyzer.l"
 { 
                 loglist="Line no "+to_string(lines)+": Token <FOR> Lexeme "+yytext+" found"+"\n"+"\n";
 			    outlog<<loglist;
                 return FOR; }
 	YY_BREAK
+case 5:
+YY_RULE_SETUP
+#line 59 "lex_analyzer.l"
+{ 
+                loglist="Line no "+to_string(lines)+": Token <DO> Lexeme "+yytext+" found"+"\n"+"\n";
+		outlog<<loglist;
+                return DO; }
+	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 66 "lex_analyzer.l"
+#line 64 "lex_analyzer.l"
 { 
                 loglist="Line no "+to_string(lines)+": Token <INT> Lexeme "+yytext+" found"+"\n"+"\n";
 		outlog<<loglist;
@@ -713,98 +746,152 @@ YY_RULE_SETUP
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 71 "lex_analyzer.l"
+#line 69 "lex_analyzer.l"
+{ 
+                loglist="Line no "+to_string(lines)+": Token <ELSE> Lexeme "+yytext+" found"+"\n"+"\n";
+		outlog<<loglist;
+                return FLOAT; }
+	YY_BREAK
+case 8:
+YY_RULE_SETUP
+#line 74 "lex_analyzer.l"
 { 
                 loglist="Line no "+to_string(lines)+": Token <VOID> Lexeme "+yytext+" found"+"\n"+"\n";
 		outlog<<loglist;
                 return VOID; }
 	YY_BREAK
-case 8:
-YY_RULE_SETUP
-#line 75 "lex_analyzer.l"
-{ 
-                loglist="Line no "+to_string(lines)+": Token <DO> Lexeme "+yytext+" found"+"\n"+"\n";
-		outlog<<loglist;
-                return DO; }
-	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 79 "lex_analyzer.l"
-{ 
-                loglist="Line no "+to_string(lines)+": Token <WHILE> Lexeme "+yytext+" found"+"\n"+"\n";
-			    outlog<<loglist; 
-                return WHILE; }
-	YY_BREAK
-case 10:
-YY_RULE_SETUP
-#line 84 "lex_analyzer.l"
-{ 
-                loglist="Line no "+to_string(lines)+": Token <CONTINUE> Lexeme "+yytext+" found"+"\n"+"\n";
-		outlog<<loglist;
-                return CONTINUE; }
-	YY_BREAK
-case 11:
-YY_RULE_SETUP
-#line 89 "lex_analyzer.l"
-{ 
-                loglist="Line no "+to_string(lines)+": Token <PRINTF> Lexeme "+yytext+" found"+"\n"+"\n";
-		outlog<<loglist;
-                return PRINTF; }
-	YY_BREAK
-case 12:
-YY_RULE_SETUP
-#line 94 "lex_analyzer.l"
-{ 
-                loglist="Line no "+to_string(lines)+": Token <CHAR> Lexeme "+yytext+" found"+"\n"+"\n";
-		outlog<<loglist;
-                return CHAR; }
-	YY_BREAK
-case 13:
-YY_RULE_SETUP
-#line 99 "lex_analyzer.l"
-{ 
-                loglist="Line no "+to_string(lines)+": Token <RETURN> Lexeme "+yytext+" found"+"\n"+"\n";
-		outlog<<loglist;
-                return RETURN; }
-	YY_BREAK
-case 14:
-YY_RULE_SETUP
-#line 103 "lex_analyzer.l"
-{ 
-                loglist="Line no "+to_string(lines)+": Token <DOUBLE> Lexeme "+yytext+" found"+"\n"+"\n";
-		outlog<<loglist;
-                return DOUBLE; }
-	YY_BREAK
-case 15:
-YY_RULE_SETUP
-#line 108 "lex_analyzer.l"
-{ 
-                loglist="Line no "+to_string(lines)+": Token <BREAK> Lexeme "+yytext+" found"+"\n"+"\n";
-		outlog<<loglist;
-                return BREAK; }
-	YY_BREAK
-case 16:
-YY_RULE_SETUP
-#line 113 "lex_analyzer.l"
+#line 78 "lex_analyzer.l"
 { 
                 loglist="Line no "+to_string(lines)+": Token <SWITCH> Lexeme "+yytext+" found"+"\n"+"\n";
 		outlog<<loglist;
                 return SWITCH; }
 	YY_BREAK
+case 10:
+YY_RULE_SETUP
+#line 82 "lex_analyzer.l"
+{ 
+                loglist="Line no "+to_string(lines)+": Token <SWITCH> Lexeme "+yytext+" found"+"\n"+"\n";
+		outlog<<loglist;
+                return DEFAULT; }
+	YY_BREAK
+case 11:
+YY_RULE_SETUP
+#line 86 "lex_analyzer.l"
+{ 
+                loglist="Line no "+to_string(lines)+": Token <SWITCH> Lexeme "+yytext+" found"+"\n"+"\n";
+		outlog<<loglist;
+                return GOTO; }
+	YY_BREAK
+case 12:
+YY_RULE_SETUP
+#line 90 "lex_analyzer.l"
+{ 
+                loglist="Line no "+to_string(lines)+": Token <ELSE> Lexeme "+yytext+" found"+"\n"+"\n";
+		outlog<<loglist;
+                return ELSE; }
+	YY_BREAK
+case 13:
+YY_RULE_SETUP
+#line 94 "lex_analyzer.l"
+{ 
+                loglist="Line no "+to_string(lines)+": Token <WHILE> Lexeme "+yytext+" found"+"\n"+"\n";
+			    outlog<<loglist; 
+                return WHILE; }
+	YY_BREAK
+case 14:
+YY_RULE_SETUP
+#line 98 "lex_analyzer.l"
+{ 
+                loglist="Line no "+to_string(lines)+": Token <BREAK> Lexeme "+yytext+" found"+"\n"+"\n";
+		outlog<<loglist;
+                return BREAK; }
+	YY_BREAK
+case 15:
+YY_RULE_SETUP
+#line 102 "lex_analyzer.l"
+{ 
+                loglist="Line no "+to_string(lines)+": Token <CHAR> Lexeme "+yytext+" found"+"\n"+"\n";
+		outlog<<loglist;
+                return CHAR; }
+	YY_BREAK
+case 16:
+YY_RULE_SETUP
+#line 107 "lex_analyzer.l"
+{ 
+                loglist="Line no "+to_string(lines)+": Token <DOUBLE> Lexeme "+yytext+" found"+"\n"+"\n";
+		outlog<<loglist;
+                return DOUBLE; }
+	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 117 "lex_analyzer.l"
+#line 111 "lex_analyzer.l"
+{ 
+                loglist="Line no "+to_string(lines)+": Token <RETURN> Lexeme "+yytext+" found"+"\n"+"\n";
+		outlog<<loglist;
+                return RETURN; }
+	YY_BREAK
+case 18:
+YY_RULE_SETUP
+#line 116 "lex_analyzer.l"
+{ 
+                loglist="Line no "+to_string(lines)+": Token <CONTINUE> Lexeme "+yytext+" found"+"\n"+"\n";
+		outlog<<loglist;
+                return CASE; }
+	YY_BREAK
+case 19:
+YY_RULE_SETUP
+#line 120 "lex_analyzer.l"
+{ 
+                loglist="Line no "+to_string(lines)+": Token <CONTINUE> Lexeme "+yytext+" found"+"\n"+"\n";
+		outlog<<loglist;
+                return CONTINUE; }
+	YY_BREAK
+case 20:
+YY_RULE_SETUP
+#line 124 "lex_analyzer.l"
+{ 
+                loglist="Line no "+to_string(lines)+": Token <PRINTF> Lexeme "+yytext+" found"+"\n"+"\n";
+		outlog<<loglist;
+                return PRINTF; }
+	YY_BREAK
+case 21:
+YY_RULE_SETUP
+#line 128 "lex_analyzer.l"
+{
+                symbol_info *s = new symbol_info((string)yytext,"CONST_INT");
+                yylval = (YYSTYPE)s;
+                loglist="Line no "+to_string(lines)+": Token <CONST_INT> Lexeme "+yytext+" found"+"\n"+"\n";
+			    outlog<<loglist;
+                return CONST_INT;
+            }
+	YY_BREAK
+case 22:
+YY_RULE_SETUP
+#line 135 "lex_analyzer.l"
+{
+                symbol_info *s = new symbol_info((string)yytext,"CONST_FLOAT");
+                yylval = (YYSTYPE)s;
+                loglist="Line no "+to_string(lines)+": Token <CONST_FLOAT> Lexeme "+yytext+" found"+"\n"+"\n";
+		outlog<<loglist;
+                return CONST_FLOAT;
+                }
+	YY_BREAK
+case 23:
+YY_RULE_SETUP
+#line 142 "lex_analyzer.l"
 {
                 symbol_info *s = new symbol_info((string)yytext,"ID");
                 yylval = (YYSTYPE)s;
                 loglist="Line no "+to_string(lines)+": Token <ID> Lexeme "+yytext+" found"+"\n"+"\n";
-			    outlog<<loglist;
+		outlog<<loglist;
                 return ID;
             }
 	YY_BREAK
-case 18:
+case 24:
 YY_RULE_SETUP
-#line 125 "lex_analyzer.l"
+#line 150 "lex_analyzer.l"
 {
                 symbol_info *s = new symbol_info((string)yytext,"ADDOP");
                 yylval = (YYSTYPE)s;
@@ -813,20 +900,143 @@ YY_RULE_SETUP
                 return ADDOP;
 		    }
 	YY_BREAK
-case 19:
+case 25:
 YY_RULE_SETUP
-#line 133 "lex_analyzer.l"
+#line 157 "lex_analyzer.l"
+{symbol_info *s = new symbol_info((string)yytext,"ADDOP");
+                yylval = (YYSTYPE)s;
+                loglist="Line no "+to_string(lines)+": Token <ADDOP> Lexeme "+yytext+" found"+"\n"+"\n";
+			    outlog<<loglist;
+                return MULOP;}
+	YY_BREAK
+case 26:
+YY_RULE_SETUP
+#line 162 "lex_analyzer.l"
+{symbol_info *s = new symbol_info((string)yytext,"ADDOP");
+                yylval = (YYSTYPE)s;
+                loglist="Line no "+to_string(lines)+": Token <ADDOP> Lexeme "+yytext+" found"+"\n"+"\n";
+			    outlog<<loglist;
+                return RELOP;}
+	YY_BREAK
+case 27:
+YY_RULE_SETUP
+#line 167 "lex_analyzer.l"
+{symbol_info *s = new symbol_info((string)yytext,"ADDOP");
+                yylval = (YYSTYPE)s;
+                loglist="Line no "+to_string(lines)+": Token <ADDOP> Lexeme "+yytext+" found"+"\n"+"\n";
+			    outlog<<loglist;
+                return LOGICOP;}
+	YY_BREAK
+case 28:
+YY_RULE_SETUP
+#line 172 "lex_analyzer.l"
+{ 
+                loglist="Line no "+to_string(lines)+": Token <ASSIGNOP> Lexeme "+yytext+" found"+"\n"+"\n";
+			    outlog<<loglist;               
+                return ASSIGNOP; }
+	YY_BREAK
+case 29:
+YY_RULE_SETUP
+#line 176 "lex_analyzer.l"
+{ 
+                loglist="Line no "+to_string(lines)+": Token <NOT> Lexeme "+yytext+" found"+"\n"+"\n";
+			    outlog<<loglist;               
+                return NOT; }
+	YY_BREAK
+case 30:
+YY_RULE_SETUP
+#line 181 "lex_analyzer.l"
+{ 
+                loglist="Line no "+to_string(lines)+": Token <LPAREN> Lexeme "+yytext+" found"+"\n"+"\n";
+			    outlog<<loglist;               
+                return LPAREN; }
+	YY_BREAK
+case 31:
+YY_RULE_SETUP
+#line 186 "lex_analyzer.l"
+{ 
+                loglist="Line no "+to_string(lines)+": Token <RPAREN > Lexeme "+yytext+" found"+"\n"+"\n";
+			    outlog<<loglist;               
+                return RPAREN ; }
+	YY_BREAK
+case 32:
+YY_RULE_SETUP
+#line 191 "lex_analyzer.l"
+{ 
+                loglist="Line no "+to_string(lines)+": Token <LCURL > Lexeme "+yytext+" found"+"\n"+"\n";
+			    outlog<<loglist;               
+                return LCURL ; }
+	YY_BREAK
+case 33:
+YY_RULE_SETUP
+#line 196 "lex_analyzer.l"
+{ 
+                loglist="Line no "+to_string(lines)+": Token <RCURL > Lexeme "+yytext+" found"+"\n"+"\n";
+			    outlog<<loglist;               
+                return RCURL ; }
+	YY_BREAK
+case 34:
+YY_RULE_SETUP
+#line 201 "lex_analyzer.l"
+{ 
+                loglist="Line no "+to_string(lines)+": Token <LTHIRD > Lexeme "+yytext+" found"+"\n"+"\n";
+			    outlog<<loglist;               
+                return LTHIRD ; }
+	YY_BREAK
+case 35:
+YY_RULE_SETUP
+#line 206 "lex_analyzer.l"
+{ 
+                loglist="Line no "+to_string(lines)+": Token <RTHIRD > Lexeme "+yytext+" found"+"\n"+"\n";
+			    outlog<<loglist;               
+                return RTHIRD ; }
+	YY_BREAK
+case 36:
+YY_RULE_SETUP
+#line 210 "lex_analyzer.l"
 { 
                 loglist="Line no "+to_string(lines)+": Token <COMMA> Lexeme "+yytext+" found"+"\n"+"\n";
 			    outlog<<loglist;               
                 return COMMA; }
 	YY_BREAK
-case 20:
+case 37:
 YY_RULE_SETUP
-#line 140 "lex_analyzer.l"
+#line 215 "lex_analyzer.l"
+{ 
+                loglist="Line no "+to_string(lines)+": Token <COLON > Lexeme "+yytext+" found"+"\n"+"\n";
+			    outlog<<loglist;               
+                return COLON ; }
+	YY_BREAK
+case 38:
+YY_RULE_SETUP
+#line 219 "lex_analyzer.l"
+{ 
+                loglist="Line no "+to_string(lines)+": Token <SEMICOLON > Lexeme "+yytext+" found"+"\n"+"\n";
+			    outlog<<loglist;               
+                return SEMICOLON ; }
+	YY_BREAK
+case 39:
+YY_RULE_SETUP
+#line 223 "lex_analyzer.l"
+{ 
+                loglist="Line no "+to_string(lines)+": Token <INCOP > Lexeme "+yytext+" found"+"\n"+"\n";
+			    outlog<<loglist;               
+                return INCOP ; }
+	YY_BREAK
+case 40:
+YY_RULE_SETUP
+#line 228 "lex_analyzer.l"
+{ 
+                loglist="Line no "+to_string(lines)+": Token <DECOP > Lexeme "+yytext+" found"+"\n"+"\n";
+			    outlog<<loglist;               
+                return DECOP ; }
+	YY_BREAK
+case 41:
+YY_RULE_SETUP
+#line 232 "lex_analyzer.l"
 ECHO;
 	YY_BREAK
-#line 830 "lex.yy.c"
+#line 1040 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1118,7 +1328,7 @@ static yy_state_type yy_get_previous_state()
 		while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 			{
 			yy_current_state = (int) yy_def[yy_current_state];
-			if ( yy_current_state >= 73 )
+			if ( yy_current_state >= 117 )
 				yy_c = yy_meta[(unsigned int) yy_c];
 			}
 		yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
@@ -1153,11 +1363,11 @@ yy_state_type yy_current_state;
 	while ( yy_chk[yy_base[yy_current_state] + yy_c] != yy_current_state )
 		{
 		yy_current_state = (int) yy_def[yy_current_state];
-		if ( yy_current_state >= 73 )
+		if ( yy_current_state >= 117 )
 			yy_c = yy_meta[(unsigned int) yy_c];
 		}
 	yy_current_state = yy_nxt[yy_base[yy_current_state] + (unsigned int) yy_c];
-	yy_is_jam = (yy_current_state == 72);
+	yy_is_jam = (yy_current_state == 116);
 
 	return yy_is_jam ? 0 : yy_current_state;
 	}
@@ -1712,4 +1922,4 @@ int main()
 	return 0;
 	}
 #endif
-#line 140 "lex_analyzer.l"
+#line 232 "lex_analyzer.l"

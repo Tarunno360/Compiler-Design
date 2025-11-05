@@ -15,7 +15,10 @@ ofstream outlog;
 int lines;
 
 // declare any other variables or functions needed here
-
+void yyerror(char *s)
+{
+	outlog << "At line" <<lines <<" " << s << endl;
+}
 %}
 
 %token IF FOR DO INT FLOAT VOID SWITCH DEFAULT GOTO ELSE WHILE BREAK CHAR DOUBLE RETURN CASE CONTINUE PRINTF ID ADDOP MULOP INCOP RELOP LOGICOP ASSIGNOP NOT LPAREN RPAREN LCURL RCURL LTHIRD RTHIRD COMMA COLON SEMICOLON CONST_FLOAT CONST_INT DECOP
@@ -107,7 +110,7 @@ compound_statement : LCURL statements RCURL
 			outlog<<"At line no: "<<lines<<" compound_statement : LCURL RCURL "<<endl<<endl;
 			outlog<<"{"<<endl<<"}"<<endl<<endl;
 			
-			$$ = new symbol_info("{"+"}","compound_statement");
+			$$ = new symbol_info(string("{") + string("}"), "compound_statement");
 		}
 		;
 var_declaration : type_specifier declaration_list SEMICOLON
@@ -158,7 +161,7 @@ declaration_list : declaration_list COMMA ID
 		| declaration_list COMMA ID LTHIRD CONST_INT RTHIRD
 		{
 			outlog<<"At line no: "<<lines<<" declaration_list : declaration_list COMMA ID LTHIRD CONST_INT RTHIRD "<<endl<<endl;
-			outloge <<$1->getname()<<","<<$3->getname()<<"["<<$5->getname()<<"]"<<endl<<endl;
+			outlog<<$1->getname()<<","<<$3->getname()<<"["<<$5->getname()<<"]"<<endl<<endl;
 
 			$$ = new symbol_info($1->getname()+","+ $3->getname()+"["+$5->getname()+"]","declaration_list");
 		}
@@ -209,12 +212,6 @@ statement : var_declaration
     outlog<<$7->getname()<<endl<<endl;
     $$ = new symbol_info("for(" + $3->getname() + $4->getname() + $5->getname() + ")\n" + $7->getname(), "statement");
 }
-| IF LPAREN expression RPAREN statement %prec LOWER_THAN_ELSE
-{
-    outlog<<"At line no: "<<lines<<" statement : IF (expression) statement "<<endl<<endl;
-    outlog<<"if("<<$3->getname()<<")\n"<<$5->getname()<<endl<<endl;
-    $$ = new symbol_info("if(" + $3->getname() + ")\n" + $5->getname(), "statement");
-}
 | IF LPAREN expression RPAREN statement ELSE statement
 {
     outlog<<"At line no: "<<lines<<" statement : IF (...) statement ELSE statement "<<endl<<endl;
@@ -223,7 +220,7 @@ statement : var_declaration
 }
 | WHILE LPAREN expression RPAREN statement
 {
-    outlog<<"At line no: "<<忍受lines<<" statement : WHILE (expression) statement "<<endl<<endl;
+    outlog<<"At line no: "<<lines<<" statement : WHILE (expression) statement "<<endl<<endl;
     outlog<<"while("<<$3->getname()<<")\n"<<$5->getname()<<endl<<endl;
     $$ = new symbol_info("while(" + $3->getname() + ")\n" + $5->getname(), "statement");
 }

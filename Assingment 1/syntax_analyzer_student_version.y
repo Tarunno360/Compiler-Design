@@ -12,7 +12,7 @@ extern FILE *yyin;
 
 ofstream outlog;
 
-int lines;
+int lines=1; //initialized to line 1
 
 // declare any other variables or functions needed here
 void yyerror(char *s)
@@ -439,7 +439,7 @@ int main(int argc, char *argv[])
     
 	yyparse();
 	
-	//print number of lines
+	outlog<<"Total lines: "<< lines<<endl; //print number of lines
 	
 	outlog.close();
 	

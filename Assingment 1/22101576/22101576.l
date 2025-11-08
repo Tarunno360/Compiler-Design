@@ -41,7 +41,7 @@ id {letter_}({letter_}|{digit})*
 
 integers {digit}+
 
-floats {digit}+(\.{digit}+)?([eE][+-]?{digit}+)?
+floats {digit}+(\.{digit}+)?([eE][+-]?{digit}+)?  
 %%
 
 {ws}		{ /* ignore whitespace */ }

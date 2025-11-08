@@ -26,13 +26,13 @@ void yyerror(char *s)
 
 %%
 
-start : program
+start : program 
 	{
 		outlog<<"At line no: "<<lines<<" start : program "<<endl<<endl;
 	}
 	;
 
-program : program unit
+program : program unit 
 	{
 		outlog<<"At line no: "<<lines<<" program : program unit "<<endl<<endl;
 		outlog<<$1->getname()+"\n"+$2->getname()<<endl<<endl;
@@ -57,7 +57,7 @@ unit : var_declaration
 	;
 func_definition : type_specifier ID LPAREN parameter_list RPAREN compound_statement
 		{	
-                        outlog<<"At line no: "<<lines<<" func_definition : type_specifier ID LPAREN parameter_list RPAREN compound_statement "<<endl<<endl;
+            outlog<<"At line no: "<<lines<<" func_definition : type_specifier ID LPAREN parameter_list RPAREN compound_statement "<<endl<<endl;
 			outlog << $1->getname() << " " << $2->getname() << "(" << $4->getname() << ")\n" << $6->getname() << std::endl;	
 			$$ = new symbol_info($1->getname() + " " + $2->getname() + "(" + $4->getname() + ")\n" + $6->getname(),"func_definition");
 		}

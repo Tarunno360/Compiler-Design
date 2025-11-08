@@ -11,4 +11,4 @@ g++ -fpermissive -w -c -o l.o lex.yy.c
 echo 'Generated the scanner object file'
 g++ y.o l.o
 echo 'All ready, running'
-./a.exe input1.txt
+./a.exe input.txt

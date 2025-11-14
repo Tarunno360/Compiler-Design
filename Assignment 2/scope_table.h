@@ -10,6 +10,12 @@ private:
 
     int hash_function(string name)
     {
+        int hash = 0;
+        for (char ch : name)
+        {
+            hash+=ch;
+        }
+        return hash % bucket_count;
         // write your hash function here
     }
 
@@ -26,7 +32,7 @@ public:
 
     // you can add more methods if you need
 };
-
+ 
 // complete the methods of scope_table class
 void scope_table::print_scope_table(ofstream& outlog)
 {

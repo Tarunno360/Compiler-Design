@@ -6,7 +6,10 @@ class symbol_info
 private:
     string name;
     string type;
-
+    string symbol_type; // variable/array/function
+    string return_type; // int/float/void/...
+    vector<string> parameters; 
+    int array_size;
     // Write necessary attributes to store what type of symbol it is (variable/array/function)
     // Write necessary attributes to store the type/return type of the symbol (int/float/void/...)
     // Write necessary attributes to store the parameters of a function
@@ -34,6 +37,40 @@ public:
     {
         this->type = type;
     }
+    int get_array_size()
+    {
+        return array_size;
+    }
+    void set_array_size(int size)
+    {
+        this->array_size = size;
+    }
+    string get_symbol_type()
+    {
+        return symbol_type;
+    }
+    void set_symbol_type(string symbol_type)
+    {
+        this->symbol_type = symbol_type;
+    }
+    string get_return_type()
+    {
+        return return_type;
+    }
+    void set_return_type(string return_type)
+    {
+        this->return_type = return_type;
+    }
+    vector<string> get_parameters()
+    {
+        return parameters;
+    }
+    void set_parameters(vector<string> parameters)
+    {
+        this->parameters = parameters;
+    }
+    
+
     // Write necessary functions to set and get the attributes
 
     ~symbol_info()

@@ -1,6 +1,3 @@
-ifdef SYMBOL_INFO_H
-#define SYMBOL_INFO_H
-
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -81,5 +78,3 @@ public:
         // Write necessary code to deallocate memory, if necessary
     }
 };
-
-#endif

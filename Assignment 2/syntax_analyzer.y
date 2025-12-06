@@ -10,9 +10,12 @@ int yylex(void);
 extern YYSTYPE yylval;
 
 // create your symbol table here.
+symbol_table n_symbol_table(10, &outlog);
 // You can store the pointer to your symbol table in a global variable
 // or you can create an object
+vector<symbol_info *> parameters ;
 
+int parameter_count_var =0;
 int lines = 1;
 
 ofstream outlog;
@@ -23,7 +26,10 @@ ofstream outlog;
 void yyerror(char *s)
 {
 	outlog<<"At line "<<lines<<" "<<s<<endl<<endl;
-
+	parameter_name.clear();
+	parameter_type.clear();
+	variable_list.clear();
+	number_of_parameters = 0;
     // you may need to reinitialize variables if you find an error
 }
 
@@ -42,6 +48,7 @@ start : program
 		outlog<<"Symbol Table"<<endl<<endl;
 		
 		// Print your whole symbol table here
+		table->print_all_scopes(outlog);
 	}
 	;
 
@@ -77,7 +84,18 @@ unit : var_declaration
 	 }
      ;
 
-func_definition : type_specifier ID LPAREN parameter_list RPAREN compound_statement
+func_definition : type_specifier ID LPAREN parameter_list RPAREN
+		{
+		$2->set_symbol_type("Function Definition");
+		$2->set_return_type($1->get_name());
+		stringstream ss($4->get_name());
+		string token;
+		while (getline(ss, token, ',')) {
+        	$2->add_parameter_type(token);
+    	} 
+		n_symbol_table.insert($2);
+		}
+		compound_statement
 		{	
 			outlog<<"At line no: "<<lines<<" func_definition : type_specifier ID LPAREN parameter_list RPAREN compound_statement "<<endl<<endl;
 			outlog<<$1->getname()<<" "<<$2->getname()<<"("+$4->getname()+")\n"<<$6->getname()<<endl<<endl;
@@ -88,7 +106,13 @@ func_definition : type_specifier ID LPAREN parameter_list RPAREN compound_statem
             // You can now insert necessary information about the function into the symbol table
             // However, note that the scope of the function and the scope of the compound statement are different.
 		}
-		| type_specifier ID LPAREN RPAREN compound_statement
+		| type_specifier ID LPAREN RPAREN 
+		{
+		$2->set_symbol_type("Function Definition");
+		$2->set_return_type($1->get_name());
+		n_symbol_table.insert($2);
+		}
+		compound_statement
 		{
 			
 			outlog<<"At line no: "<<lines<<" func_definition : type_specifier ID LPAREN RPAREN compound_statement "<<endl<<endl;
@@ -108,7 +132,10 @@ parameter_list : parameter_list COMMA type_specifier ID
 			outlog<<$1->getname()<<","<<$3->getname()<<" "<<$4->getname()<<endl<<endl;
 					
 			$$ = new symbol_info($1->getname()+","+$3->getname()+" "+$4->getname(),"param_list");
-			
+			$4->set_symbol_type("Variable");
+			$4->set_return_type($3->get_name());
+			params.push_back($4);
+			parameter_count_var++;
             // store the necessary information about the function parameters
             // They will be needed when you want to enter the function into the symbol table
 		}
@@ -128,7 +155,10 @@ parameter_list : parameter_list COMMA type_specifier ID
 			outlog<<$1->getname()<<" "<<$2->getname()<<endl<<endl;
 			
 			$$ = new symbol_info($1->getname()+" "+$2->getname(),"param_list");
-			
+			$4->set_symbol_type("Variable");
+			$4->set_return_type($3->get_name());
+			params.push_back($4);
+			parameter_count_var++;
             // store the necessary information about the function parameters
             // They will be needed when you want to enter the function into the symbol table
 		}
@@ -144,13 +174,25 @@ parameter_list : parameter_list COMMA type_specifier ID
 		}
  		;
 
-compound_statement : LCURL statements RCURL
+compound_statement : LCURL
+{
+	n_symbol_table.enter_scope();
+	
+} statements RCURL
 			{ 
  		    	outlog<<"At line no: "<<lines<<" compound_statement : LCURL statements RCURL "<<endl<<endl;
 				outlog<<"{\n"+$3->getname()+"\n}"<<endl<<endl;
 				
 				$$ = new symbol_info("{\n"+$3->getname()+"\n}","comp_stmnt");
-				
+					if (parameter_count_var>0){
+						for (auto param: parameters){
+						n_symbol_table.insert(param);
+					}
+					parameter_count_var = 0;
+					parameters.clear();
+					}
+					n_symbol_table.print_all_scopes();
+					n_symbol_table.exit_scope();
                 // The compound statement is complete.
                 // Print the symbol table here and exit the scope
                 // Note that function parameters should be in the current scope
@@ -173,7 +215,27 @@ var_declaration : type_specifier declaration_list SEMICOLON
 			outlog<<$1->getname()<<" "<<$2->getname()<<";"<<endl<<endl;
 			
 			$$ = new symbol_info($1->getname()+" "+$2->getname()+";","var_dec");
-			
+			stringstream ss_var($2->get_name());
+		string token_var;
+		while (getline(ss_var, token_var, ',')) {
+			symbol_info *func = new symbol_info(token_var, "ID");
+
+			size_t index_lthird = token_var.find("[");
+			size_t index_rthird = token_var.find("]");
+			if (index_lthird != string::npos) {
+				func->set_name(token_var.substr(0, index_lthird));
+				func->set_symbol_type("Array");
+				func->set_return_type($1->get_name());
+
+				string s = token_var.substr(index_lthird + 1, index_rthird - index_lthird - 1);
+				func->set_size(stoi(s));
+			} else {
+				func->set_symbol_type("Variable");
+				func->set_return_type($1->get_name());
+			}
+
+			n_symbol_table.insert(func);
+    	}
 			// Insert necessary information about the variables in the symbol table
 		 }
  		 ;
@@ -213,7 +275,7 @@ declaration_list : declaration_list COMMA ID
  		  {
  		  	outlog<<"At line no: "<<lines<<" declaration_list : declaration_list COMMA ID LTHIRD CONST_INT RTHIRD "<<endl<<endl;
  		  	outlog<<$1->getname()+","<<$3->getname()<<"["<<$5->getname()<<"]"<<endl<<endl;
-
+			$$ = new symbol_info($1->get_name()+","+$3->get_name()+"["+$5->get_name()+"]","declaration_list");
             // you may need to store the variable names to insert them in symbol table here or later
 			
  		  }
@@ -221,7 +283,7 @@ declaration_list : declaration_list COMMA ID
  		  {
  		  	outlog<<"At line no: "<<lines<<" declaration_list : ID "<<endl<<endl;
 			outlog<<$1->getname()<<endl<<endl;
-
+			$$ = new symbol_info($1->get_name(),"declaration_list");
             // you may need to store the variable names to insert them in symbol table here or later
 			
  		  }
@@ -229,7 +291,7 @@ declaration_list : declaration_list COMMA ID
  		  {
  		  	outlog<<"At line no: "<<lines<<" declaration_list : ID LTHIRD CONST_INT RTHIRD "<<endl<<endl;
 			outlog<<$1->getname()<<"["<<$3->getname()<<"]"<<endl<<endl;
-
+			$$ = new symbol_info($1->get_name()+"["+$3->get_name()+"]","declaration_list");
             // you may need to store the variable names to insert them in symbol table here or later
             
  		  }

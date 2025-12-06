@@ -72,7 +72,10 @@ public:
     {
         this->parameters = parameters;
     }
-    
+    void add_parameter_type(string param)
+    {
+        params.push_back(param);
+    }
 
     // Write necessary functions to set and get the attributes
 

@@ -40,10 +40,10 @@ public:
     }
     symbol_info *lookup_in_scope(symbol_info* symbol)
     {
-        string hash_name = symbol->get_name();
+        string hash_name = symbol->getname();
         int index_number = hash_function(hash_name);
         for(symbol_info* sym : table[index_number]){
-            if(sym->get_name() == hash_name){
+            if(sym->getname() == hash_name){
                 return sym; // found
             }
         }
@@ -54,20 +54,20 @@ public:
         if(lookup_in_scope(symbol) != nullptr){
             return false;
         }
-        int index_number = hash_function(symbol->get_name());
+        int index_number = hash_function(symbol->getname());
         table[index_number].push_back(symbol);
         return true;
     }
 bool delete_from_scope(symbol_info* symbol)
 {
-    string name = symbol->get_name();
+    string name = symbol->getname();
     int idx = hash_function(name);
     
     auto& bucket = table[idx];
 
     for (auto it = bucket.begin(); it != bucket.end(); ++it)
     {
-        if ((*it)->get_name() == name)
+        if ((*it)->getname() == name)
         {
             bucket.erase(it);
             return true;
@@ -91,7 +91,7 @@ bool delete_from_scope(symbol_info* symbol)
 
         for(symbol_info* sym : bucket)
         {
-            outlog << "< " << sym->get_name()
+            outlog << "< " << sym->getname()
                    << " : " << sym->get_type()
                    << " >" << endl;
 

@@ -1600,8 +1600,8 @@ yyreduce:
 #line 84 "syntax_analyzer.y"
     {
 		(yyvsp[(2) - (5)])->set_symbol_type("Function Definition");
-		(yyvsp[(2) - (5)])->set_return_type((yyvsp[(1) - (5)])->get_name());
-		stringstream ss((yyvsp[(4) - (5)])->get_name());
+		(yyvsp[(2) - (5)])->set_return_type((yyvsp[(1) - (5)])->getname());
+		stringstream ss((yyvsp[(4) - (5)])->getname());
 		string token;
 		while (getline(ss, token, ',')) {
         	(yyvsp[(2) - (5)])->add_parameter_type(token);
@@ -1630,7 +1630,7 @@ yyreduce:
 #line 106 "syntax_analyzer.y"
     {
 		(yyvsp[(2) - (4)])->set_symbol_type("Function Definition");
-		(yyvsp[(2) - (4)])->set_return_type((yyvsp[(1) - (4)])->get_name());
+		(yyvsp[(2) - (4)])->set_return_type((yyvsp[(1) - (4)])->getname());
 		n_symbol_table.insert((yyvsp[(2) - (4)]));
 		}
     break;
@@ -1660,7 +1660,7 @@ yyreduce:
 					
 			(yyval) = new symbol_info((yyvsp[(1) - (4)])->getname()+","+(yyvsp[(3) - (4)])->getname()+" "+(yyvsp[(4) - (4)])->getname(),"param_list");
 			(yyvsp[(4) - (4)])->set_symbol_type("Variable");
-			(yyvsp[(4) - (4)])->set_return_type((yyvsp[(3) - (4)])->get_name());
+			(yyvsp[(4) - (4)])->set_return_type((yyvsp[(3) - (4)])->getname());
 			params.push_back((yyvsp[(4) - (4)]));
 			parameter_count_var++;
             // store the necessary information about the function parameters
@@ -1691,7 +1691,7 @@ yyreduce:
 			
 			(yyval) = new symbol_info((yyvsp[(1) - (2)])->getname()+" "+(yyvsp[(2) - (2)])->getname(),"param_list");
 			(yyvsp[(2) - (2)])->set_symbol_type("Variable");
-			(yyvsp[(2) - (2)])->set_return_type((yyvsp[(1) - (2)])->get_name());
+			(yyvsp[(2) - (2)])->set_return_type((yyvsp[(1) - (2)])->getname());
 			params.push_back((yyvsp[(2) - (2)]));
 			parameter_count_var++;
             // store the necessary information about the function parameters
@@ -1767,7 +1767,7 @@ yyreduce:
 			outlog<<(yyvsp[(1) - (3)])->getname()<<" "<<(yyvsp[(2) - (3)])->getname()<<";"<<endl<<endl;
 			
 			(yyval) = new symbol_info((yyvsp[(1) - (3)])->getname()+" "+(yyvsp[(2) - (3)])->getname()+";","var_dec");
-			stringstream ss_var((yyvsp[(2) - (3)])->get_name());
+			stringstream ss_var((yyvsp[(2) - (3)])->getname());
 		string token_var;
 		while (getline(ss_var, token_var, ',')) {
 			symbol_info *func = new symbol_info(token_var, "ID");
@@ -1777,13 +1777,13 @@ yyreduce:
 			if (index_lthird != string::npos) {
 				func->set_name(token_var.substr(0, index_lthird));
 				func->set_symbol_type("Array");
-				func->set_return_type((yyvsp[(1) - (3)])->get_name());
+				func->set_return_type((yyvsp[(1) - (3)])->getname());
 
 				string s = token_var.substr(index_lthird + 1, index_rthird - index_lthird - 1);
 				func->set_size(stoi(s));
 			} else {
 				func->set_symbol_type("Variable");
-				func->set_return_type((yyvsp[(1) - (3)])->get_name());
+				func->set_return_type((yyvsp[(1) - (3)])->getname());
 			}
 
 			n_symbol_table.insert(func);
@@ -1843,7 +1843,7 @@ yyreduce:
     {
  		  	outlog<<"At line no: "<<lines<<" declaration_list : declaration_list COMMA ID LTHIRD CONST_INT RTHIRD "<<endl<<endl;
  		  	outlog<<(yyvsp[(1) - (6)])->getname()+","<<(yyvsp[(3) - (6)])->getname()<<"["<<(yyvsp[(5) - (6)])->getname()<<"]"<<endl<<endl;
-			(yyval) = new symbol_info((yyvsp[(1) - (6)])->get_name()+","+(yyvsp[(3) - (6)])->get_name()+"["+(yyvsp[(5) - (6)])->get_name()+"]","declaration_list");
+			(yyval) = new symbol_info((yyvsp[(1) - (6)])->getname()+","+(yyvsp[(3) - (6)])->getname()+"["+(yyvsp[(5) - (6)])->getname()+"]","declaration_list");
             // you may need to store the variable names to insert them in symbol table here or later
 			
  		  }
@@ -1855,7 +1855,7 @@ yyreduce:
     {
  		  	outlog<<"At line no: "<<lines<<" declaration_list : ID "<<endl<<endl;
 			outlog<<(yyvsp[(1) - (1)])->getname()<<endl<<endl;
-			(yyval) = new symbol_info((yyvsp[(1) - (1)])->get_name(),"declaration_list");
+			(yyval) = new symbol_info((yyvsp[(1) - (1)])->getname(),"declaration_list");
             // you may need to store the variable names to insert them in symbol table here or later
 			
  		  }
@@ -1867,7 +1867,7 @@ yyreduce:
     {
  		  	outlog<<"At line no: "<<lines<<" declaration_list : ID LTHIRD CONST_INT RTHIRD "<<endl<<endl;
 			outlog<<(yyvsp[(1) - (4)])->getname()<<"["<<(yyvsp[(3) - (4)])->getname()<<"]"<<endl<<endl;
-			(yyval) = new symbol_info((yyvsp[(1) - (4)])->get_name()+"["+(yyvsp[(3) - (4)])->get_name()+"]","declaration_list");
+			(yyval) = new symbol_info((yyvsp[(1) - (4)])->getname()+"["+(yyvsp[(3) - (4)])->getname()+"]","declaration_list");
             // you may need to store the variable names to insert them in symbol table here or later
             
  		  }

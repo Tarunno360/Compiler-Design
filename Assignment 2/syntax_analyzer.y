@@ -83,8 +83,8 @@ unit : var_declaration
 func_definition : type_specifier ID LPAREN parameter_list RPAREN
 		{
 		$2->set_symbol_type("Function Definition");
-		$2->set_return_type($1->get_name());
-		stringstream ss($4->get_name());
+		$2->set_return_type($1->getname());
+		stringstream ss($4->getname());
 		string token;
 		while (getline(ss, token, ',')) {
         	$2->add_parameter_type(token);
@@ -105,7 +105,7 @@ func_definition : type_specifier ID LPAREN parameter_list RPAREN
 		| type_specifier ID LPAREN RPAREN 
 		{
 		$2->set_symbol_type("Function Definition");
-		$2->set_return_type($1->get_name());
+		$2->set_return_type($1->getname());
 		n_symbol_table.insert($2);
 		}
 		compound_statement
@@ -129,7 +129,7 @@ parameter_list : parameter_list COMMA type_specifier ID
 					
 			$$ = new symbol_info($1->getname()+","+$3->getname()+" "+$4->getname(),"param_list");
 			$4->set_symbol_type("Variable");
-			$4->set_return_type($3->get_name());
+			$4->set_return_type($3->getname());
 			params.push_back($4);
 			parameter_count_var++;
             // store the necessary information about the function parameters
@@ -152,7 +152,7 @@ parameter_list : parameter_list COMMA type_specifier ID
 			
 			$$ = new symbol_info($1->getname()+" "+$2->getname(),"param_list");
 			$2->set_symbol_type("Variable");
-			$2->set_return_type($1->get_name());
+			$2->set_return_type($1->getname());
 			params.push_back($2);
 			parameter_count_var++;
             // store the necessary information about the function parameters
@@ -211,7 +211,7 @@ var_declaration : type_specifier declaration_list SEMICOLON
 			outlog<<$1->getname()<<" "<<$2->getname()<<";"<<endl<<endl;
 			
 			$$ = new symbol_info($1->getname()+" "+$2->getname()+";","var_dec");
-			stringstream ss_var($2->get_name());
+			stringstream ss_var($2->getname());
 		string token_var;
 		while (getline(ss_var, token_var, ',')) {
 			symbol_info *func = new symbol_info(token_var, "ID");
@@ -221,13 +221,13 @@ var_declaration : type_specifier declaration_list SEMICOLON
 			if (index_lthird != string::npos) {
 				func->set_name(token_var.substr(0, index_lthird));
 				func->set_symbol_type("Array");
-				func->set_return_type($1->get_name());
+				func->set_return_type($1->getname());
 
 				string s = token_var.substr(index_lthird + 1, index_rthird - index_lthird - 1);
 				func->set_size(stoi(s));
 			} else {
 				func->set_symbol_type("Variable");
-				func->set_return_type($1->get_name());
+				func->set_return_type($1->getname());
 			}
 
 			n_symbol_table.insert(func);
@@ -271,7 +271,7 @@ declaration_list : declaration_list COMMA ID
  		  {
  		  	outlog<<"At line no: "<<lines<<" declaration_list : declaration_list COMMA ID LTHIRD CONST_INT RTHIRD "<<endl<<endl;
  		  	outlog<<$1->getname()+","<<$3->getname()<<"["<<$5->getname()<<"]"<<endl<<endl;
-			$$ = new symbol_info($1->get_name()+","+$3->get_name()+"["+$5->get_name()+"]","declaration_list");
+			$$ = new symbol_info($1->getname()+","+$3->getname()+"["+$5->getname()+"]","declaration_list");
             // you may need to store the variable names to insert them in symbol table here or later
 			
  		  }
@@ -279,7 +279,7 @@ declaration_list : declaration_list COMMA ID
  		  {
  		  	outlog<<"At line no: "<<lines<<" declaration_list : ID "<<endl<<endl;
 			outlog<<$1->getname()<<endl<<endl;
-			$$ = new symbol_info($1->get_name(),"declaration_list");
+			$$ = new symbol_info($1->getname(),"declaration_list");
             // you may need to store the variable names to insert them in symbol table here or later
 			
  		  }
@@ -287,7 +287,7 @@ declaration_list : declaration_list COMMA ID
  		  {
  		  	outlog<<"At line no: "<<lines<<" declaration_list : ID LTHIRD CONST_INT RTHIRD "<<endl<<endl;
 			outlog<<$1->getname()<<"["<<$3->getname()<<"]"<<endl<<endl;
-			$$ = new symbol_info($1->get_name()+"["+$3->get_name()+"]","declaration_list");
+			$$ = new symbol_info($1->getname()+"["+$3->getname()+"]","declaration_list");
             // you may need to store the variable names to insert them in symbol table here or later
             
  		  }

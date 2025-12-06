@@ -13,11 +13,10 @@ extern YYSTYPE yylval;
 symbol_table n_symbol_table(10, &outlog);
 // You can store the pointer to your symbol table in a global variable
 // or you can create an object
-vector<symbol_info *> parameters ;
+vector<symbol_info *> params ;
 
 int parameter_count_var =0;
-int lines = 1;
-
+int lines=1;
 ofstream outlog;
 
 // you may declare other necessary variables here to store necessary info
@@ -26,10 +25,6 @@ ofstream outlog;
 void yyerror(char *s)
 {
 	outlog<<"At line "<<lines<<" "<<s<<endl<<endl;
-	parameter_name.clear();
-	parameter_type.clear();
-	variable_list.clear();
-	number_of_parameters = 0;
     // you may need to reinitialize variables if you find an error
 }
 
@@ -48,7 +43,8 @@ start : program
 		outlog<<"Symbol Table"<<endl<<endl;
 		
 		// Print your whole symbol table here
-		table->print_all_scopes(outlog);
+		n_symbol_table.print_all_scopes();
+		
 	}
 	;
 
@@ -155,9 +151,9 @@ parameter_list : parameter_list COMMA type_specifier ID
 			outlog<<$1->getname()<<" "<<$2->getname()<<endl<<endl;
 			
 			$$ = new symbol_info($1->getname()+" "+$2->getname(),"param_list");
-			$4->set_symbol_type("Variable");
-			$4->set_return_type($3->get_name());
-			params.push_back($4);
+			$2->set_symbol_type("Variable");
+			$2->set_return_type($1->get_name());
+			params.push_back($2);
 			parameter_count_var++;
             // store the necessary information about the function parameters
             // They will be needed when you want to enter the function into the symbol table

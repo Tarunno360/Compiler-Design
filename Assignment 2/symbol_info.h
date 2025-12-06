@@ -11,7 +11,7 @@ private:
     string type;
     string symbol_type; // variable/array/function
     string return_type; // int/float/void/...
-    vector<string> parameters; 
+    vector<string> params; 
     int array_size;
     // Write necessary attributes to store what type of symbol it is (variable/array/function)
     // Write necessary attributes to store the type/return type of the symbol (int/float/void/...)
@@ -64,9 +64,9 @@ public:
     {
         this->return_type = return_type;
     }
-    vector<string> get_parameters()
+    vector<string> get_params()
     {
-        return parameters;
+        return params;
     }
     void set_parameters(vector<string> parameters)
     {

@@ -6,7 +6,7 @@ private:
     scope_table *current_scope;
     int bucket_count;
     int current_scope_id;
-
+    ofstream* outlog;
 public:
     symbol_table(int bucket_count,ofstream* outlog){
         this->bucket_count = bucket_count;
@@ -43,7 +43,7 @@ public:
         return current_scope->insert_in_scope(symbol);
     }
     symbol_info* lookup(symbol_info* symbol){
-        string name = symbol->get_name();
+        string name = symbol->getname();
         scope_table* temp = current_scope;
         while(temp != NULL){
             symbol_info* found_symbol = temp->lookup_in_scope(symbol);
@@ -61,7 +61,7 @@ public:
         else{
             *outlog << "No active scope table" << endl << endl;
         }
-    void print_all_scopes(ofstream& outlog){
+    void print_all_scopes(){
         outlog<<"################################"<<endl<<endl;
         scope_table *temp = current_scope;
         while (temp != NULL)

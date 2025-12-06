@@ -20,17 +20,13 @@ private:
     }
 
 public:
-    scope_table(){
-        bucket_count = 0;
-        unique_id = 0;
-        parent_scope = NULL;
-    };
-    scope_table(int bucket_count, int unique_id, scope_table *parent_scope){
-        this->bucket_count = bucket_count;
-        this->unique_id = unique_id;
-        this->parent_scope = parent_scope;
+    scope_table() {}
+
+    scope_table(int bucket_count, int unique_id, scope_table *parent_scope = NULL)
+        : bucket_count(bucket_count), unique_id(unique_id), parent_scope(parent_scope)
+    {
         table.resize(bucket_count);
-    };
+    }
     scope_table *get_parent_scope()
     {
         return parent_scope;

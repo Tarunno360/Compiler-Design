@@ -2564,6 +2564,7 @@ int main(int argc, char *argv[])
 	}
 	yyin = fopen(argv[1], "r");
 	outlog.open("my_log.txt", ios::trunc);
+	n_symbol_table.enter_scope();
 	
 	if(yyin == NULL)
 	{

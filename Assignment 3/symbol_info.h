@@ -1,0 +1,105 @@
+#ifndef SYMBOL_INFO_H
+#define SYMBOL_INFO_H
+
+#include<bits/stdc++.h>
+using namespace std;
+
+class symbol_info
+{
+private:
+    string name;
+    string type;
+    string symbol_type; // variable/array/function
+    string return_type; // int/float/void/...
+    vector<string> parameters; 
+    int array_size;
+    // Write necessary attributes to store what type of symbol it is (variable/array/function)
+    // Write necessary attributes to store the type/return type of the symbol (int/float/void/...)
+    // Write necessary attributes to store the parameters of a function
+    // Write necessary attributes to store the array size if the symbol is an array
+
+public:
+    symbol_info(string name, string type)
+    {
+        this->name = name;
+        this->type = type;
+    }
+    string getname()
+    {
+        return name;
+    }
+    string get_type()
+    {
+        return type;
+    }
+    void set_name(string name)
+    {
+        this->name = name;
+    }
+    void set_type(string type)
+    {
+        this->type = type;
+    }
+    int get_array_size()
+    {
+        return array_size;
+    }
+    void set_array_size(int size)
+    {
+        this->array_size = size;
+    }
+    string get_symbol_type()
+    {
+        return symbol_type;
+    }
+    void set_symbol_type(string symbol_type)
+    {
+        this->symbol_type = symbol_type;
+    }
+    string get_return_type()
+    {
+        return return_type;
+    }
+    void set_return_type(string return_type)
+    {
+        this->return_type = return_type;
+    }
+    vector<string> get_parameters()
+    {
+        return parameters;
+    }
+    void set_parameters(vector<string> parameters)
+    {
+        this->parameters = parameters;
+    }
+    void add_parameter_type(string param)
+    {
+        parameters.push_back(param);
+    }
+    
+    string get_name()
+    {
+        return name;
+    }
+    vector<string> get_params()
+    {
+        return parameters;
+    }
+    void set_size(int s)
+    {
+        this->array_size = s;
+    }
+    int get_size()
+    {
+        return this->array_size;
+    }
+
+    // Write necessary functions to set and get the attributes
+
+    ~symbol_info()
+    {
+        // Write necessary code to deallocate memory, if necessary
+    }
+};
+
+#endif

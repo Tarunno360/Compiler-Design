@@ -1,6 +1,6 @@
 #include "scope_table.h"
 #include <fstream>
-//lab3 starts
+
 class SymbolTable
 {
 private:

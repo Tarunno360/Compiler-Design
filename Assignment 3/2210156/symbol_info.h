@@ -93,17 +93,7 @@ public:
     {
         return this->array_size;
     }
-    void set_declared(bool decl) {
-        this->is_declared = decl;
-    }
-    
-    bool get_declared() {
-        return is_declared;
-    }
-    ~symbol_info()
-    {
 
-    }
     // Write necessary functions to set and get the attributes
 
     ~symbol_info()

@@ -10,7 +10,16 @@ g++ -fpermissive -w -c -o l.o lex.yy.c
 # if the above command doesn't work try g++ -fpermissive -w -c -o l.o lex.yy.c
 echo 'Generated the scanner object file'
 g++ y.o l.o
-echo 'All ready, running'
-./a.exe input.c
-echo 'log'
+echo 'All ready, running the two-pass compiler...'
+
+# Run the compiler on the input file
+./two_pass_compiler input3.c
+echo 'Compilation completed.'
+
+# Display output files
+echo '------------ Log output ------------'
 cat log.txt
+echo '------------ Error output ------------'
+cat error.txt
+echo '------------ Three Address Code ------------'
+cat code.txt

@@ -41,7 +41,6 @@ start : program
 	{
 		outlog<<"At line no: "<<lines<<" start : program "<<endl<<endl;
 		outlog<<"Symbol Table"<<endl<<endl;
-		$$ = new symbol_info($1->getname()+"\n"+$2->getname(),"program");
 		// Print your whole symbol table here
 		n_symbol_table.print_all_scopes();
 		

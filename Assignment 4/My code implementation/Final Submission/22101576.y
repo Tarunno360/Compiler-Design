@@ -21,6 +21,7 @@ string current_function_name = "";
 
 
 SymbolTable n_symbol_table(10, &outlog);
+ProgramNode* ast_root = new ProgramNode();
 vector<symbol_info *> params ;
 
 
